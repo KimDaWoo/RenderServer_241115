@@ -17,14 +17,6 @@ app.use(cors({
 
 app.use(express.json());
 
-app.options('/process-auth', (req, res) => {
-  res.header("Access-Control-Allow-Origin", "http://www.zazaero.com");
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.sendStatus(200);  // OK 상태로 프리플라이트 요청 응답
-});
-
 // 모든 요청에 대해 CORS 헤더를 추가로 설정하는 미들웨어
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://www.zazaero.com");
