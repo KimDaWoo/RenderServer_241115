@@ -44,6 +44,8 @@ app.get('/process-auth', async (req, res) => {
     const response = await fetch(url, options);
     const data = await response.json();
 
+    console.log(data);
+
     // 전체 응답 데이터와 함께 accessToken이 있다면 표시
     res.json({
       success: data.accessToken ? true : false,
