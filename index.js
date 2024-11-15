@@ -1,10 +1,16 @@
 // Express 설정
 const express = require('express');
 const fetch = require('node-fetch');
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 require('dotenv').config();
+
+// CORS 미들웨어 설정
+app.use(cors({
+  origin: 'http://www.zazaero.com'  // 허용할 도메인 설정 (또는 '*'로 모든 도메인 허용)
+}));
 
 app.use(express.json());
 
