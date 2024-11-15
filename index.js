@@ -9,7 +9,7 @@ require('dotenv').config();
 
 // CORS 미들웨어 설정
 app.use(cors({
-  origin: 'http://www.zazaero.com',  // 허용할 도메인 설정
+  origin: '*',  // 허용할 도메인 설정
   methods: ['GET', 'POST', 'OPTIONS'],  // 허용할 HTTP 메서드 명시
   allowedHeaders: ['Content-Type', 'Authorization'],  // 허용할 헤더 명시
   credentials: true  // 인증 포함 허용
@@ -19,7 +19,7 @@ app.use(express.json());
 
 // 모든 요청에 대해 CORS 헤더를 추가로 설정하는 미들웨어
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://www.zazaero.com");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", "true");  // 인증 정보를 포함한 요청 허용
