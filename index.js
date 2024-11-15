@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 require('dotenv').config();
 
-// CORS 미들웨어 설정
+// CORS 미들웨어 설정 
 app.use(cors({
   origin: 'http://www.zazaero.com'  // 허용할 도메인 설정 (또는 '*'로 모든 도메인 허용)
 }));
@@ -44,15 +44,19 @@ app.get('/process-auth', async (req, res) => {
     const response = await fetch(url, options);
     const data = await response.json();
 
-    if (data.accessToken) {
-      // 발급된 액세스 토큰을 클라이언트에 전달
-      res.json({ accessToken: data.accessToken });
-    } else {
-      res.status(500).json({ message: "Failed to get access token", details: data });
-    }
+    // 전체 응답 데이터와 함께 accessToken이 있다면 표시
+    res.json({
+      success: data.accessToken ? true : false,
+      message: data.accessToken ? "Access Token 발급 성공" : "Access Token 발급 실패",
+      accessToken: data.accessToken || null,
+      fullResponse: data
+    });
   } catch (error) {
     console.error("Error requesting access token:", error);
-    res.status(500).json({ message: "Error requesting access token" });
+    res.status(500).json({ 
+      message: "Error requesting access token",
+      error: error.message
+    });
   }
 });
 
